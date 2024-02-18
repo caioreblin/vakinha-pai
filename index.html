@@ -1,106 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajude o Rubens</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f8f8;
-    }
-    header {
-      background-color: #fefefe;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-    .image-container {
-      text-align: center;
-    }
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-    }
-    .tab {
-      display: none;
-    }
-    .tab.active {
-      display: block;
-    }
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
-    nav ul li {
-      display: inline-block;
-      margin-right: 20px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding-bottom: 5px;
-      border-bottom: 2px solid transparent;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      border-bottom-color: #ff6f61;
-    }
-    .contact-info {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .contact-info p {
-      margin-bottom: 10px;
-    }
-    .contact-info img {
-      max-width: 200px;
-      height: auto;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
 </head>
+
 <body>
   <header>
-    <h1>Ajude o Rubens</h1>
+    <h1>Ajude Rubens Reblin</h1>
     <nav>
       <ul>
         <li><a href="#" class="tab-link active" data-tab="sobre">Sobre</a></li>
-        <li><a href="#" class="tab-link" data-tab="contato">Contato</a></li>
         <li><a href="#" class="tab-link" data-tab="arrecadacoes">Arrecadações</a></li>
+        <li><a href="#" class="tab-link" data-tab="contato">Contato</a></li>
       </ul>
     </nav>
   </header>
   <div class="container">
     <div id="sobre" class="tab active">
       <div class="image-container">
-        <img src="" alt="Foto do Rubens">
+        <img src="sua_imagem1.jpg" alt="Foto 1 do Rubens">
+        <img src="sua_imagem2.jpg" alt="Foto 2 do Rubens">
+        <img src="sua_imagem3.jpg" alt="Foto 3 do Rubens">
       </div>
-      <p>Texto aqui</p>
+      <p>Olá a todos, sou Rubens Reblin e estou aqui para compartilhar um capítulo importante da minha jornada...</p>
+      <hr>
       <div class="contact-info">
         <p>Para contribuir, utilize as opções abaixo:</p>
-        <p>Chave PIX: seu_email@exemplo.com</p>
-        <img src="" alt="QR Code PIX">
+        <div class="pix-key">
+          <p>Chave PIX: <span id="chave-pix">000.000.000-00</span></p>
+          <button class="copy-button" onclick="copyToClipboard()">Copiar Chave PIX</button>
+        </div>
+        <img style="border-radius: 20px;" src="img/qr_code_pix.jpg" alt="QR Code PIX">
+        <p>Nome: Dirciane Rosa Reblin | Instituição: Nubank</p>
+      </div>
+    </div>
+    <div id="arrecadacoes" class="tab">
+      <div class="donation-info">
+        <p>Arrecadado: <span class="arrecadado-value">R$ 0,00</span></p>
+        <p>Meta: R$ 48.000,00</p>
+      </div>
+      <p style="margin-top: 20px;">Progresso: <span id="progress"></span></p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 0%;"></div>
+        <span class="meta-label">R$ 48.000,00</span>
+      </div>
+      <!--img src="orcamento.jpg" alt="Orçamento"-->
+      <hr>
+      <div class="contact-info" style="margin-top: 10px;">
+        <p>Para contribuir, utilize as opções abaixo:</p>
+        <div class="pix-key">
+          <p>Chave PIX: <span id="chave-pix">000.000.000-00</span></p>
+          <button class="copy-button" onclick="copyToClipboard()">Copiar Chave PIX</button>
+        </div>
+        <img style="border-radius: 20px;" src="img/qr_code_pix.jpg" alt="QR Code PIX">
+        <p>Nome: Dirciane Rosa Reblin | Instituição: Nubank</p>
       </div>
     </div>
     <div id="contato" class="tab">
-      <p>Aqui você pode entrar em contato conosco...</p>
-    </div>
-    <div id="arrecadacoes" class="tab">
-      <p>Aqui você pode ver as arrecadações...</p>
+      <div class="contacts-container">
+        <div class="contact">
+          <p>Contato 1</p>
+          <p>(XX) 9XXXX-XXXX</p>
+        </div>
+        <div class="contact">
+          <p>Contato 2</p>
+          <p>(XX) 9XXXX-XXXX</p>
+        </div>
+        <div class="contact">
+          <p>Contato 3</p>
+          <p>(XX) 9XXXX-XXXX</p>
+        </div>
+        <div class="contact">
+          <p>Contato 4</p>
+          <p>(XX) 9XXXX-XXXX</p>
+        </div>
+      </div>
     </div>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       const tabLinks = document.querySelectorAll(".tab-link");
       const tabs = document.querySelectorAll(".tab");
 
@@ -118,6 +100,24 @@
         });
       });
     });
+
+    function copyToClipboard() {
+      const chavePix = document.getElementById("chave-pix");
+      const tempInput = document.createElement("input");
+      tempInput.value = chavePix.textContent;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      alert("Chave PIX copiada para a área de transferência!");
+    }
+
+    const meta = 48000;
+    const arrecadado = 0;
+    const progresso = (arrecadado / meta) * 100;
+    document.getElementById("progress").textContent = progresso.toFixed(2) + "%";
+    document.querySelector(".progress").style.width = progresso + "%";
   </script>
 </body>
+
 </html>
